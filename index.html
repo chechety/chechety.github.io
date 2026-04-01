@@ -530,6 +530,11 @@ html {
 .lang-link:hover { color: var(--accent); }
 
 @media (max-width: 768px) {
+
+    ::-webkit-scrollbar {
+    display: none;
+  }
+
   .viewport {
     width: 200%;
   }
@@ -541,12 +546,24 @@ html {
     overflow: hidden;
   }
 
+  html {
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100%;
+  }
+
   body {
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100%;
   }
 
   .site-name {
     font-size: 40px;
+  }
+
+  .fondito {
+    opacity: 0.50;
   }
 
   .nav-btn {
@@ -565,6 +582,13 @@ html {
   .about-header {
     max-width: 100%;
   }
+
+  .job-title { font-size: 20px; }
+  .job-company { font-size: 10px; }
+  .job-desc { font-size: 10px; }
+  .job-time { font-size: 9px; }
+  .section-trigger { font-size: 18px; }
+  .section-trigger.muted { font-size: 11px; }
 }
 
 </style>
