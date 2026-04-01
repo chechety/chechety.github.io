@@ -1,7 +1,6 @@
 <!-- saved from url=(0094)file:///D:/Trabajo/03%20PERFIL%20PROFESIONAL/ACTUAL/WEBSITE%202026/gonzalo%20website%20v5.html -->
 <html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-  
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Video & Audio</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -12,6 +11,13 @@
 }
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
+  * {
+    cursor: url('micursor.png'), default !important;
+  }
+
+  a, button, [onclick], label, select {
+    cursor: url('manito.png'), pointer !important;
+  }
 
   :root {
     --bg: #000;
@@ -26,11 +32,7 @@
     font-family: PT mono, sans-serif;
     min-height: 100vh;
     overflow-x: hidden;
-    cursor: url('micursor.png'), auto;
-  }
-
-  a, button {
-  cursor: url('manito.png'), pointer;
+    overflow-y: auto;
   }
 
   /* VIEWPORT SLIDE */
@@ -439,8 +441,13 @@
 .contact-bar a:hover { color: var(--accent); }
 
 .contact-bar img {
+  transition: transform 0.2s ease;
   height: 1.2em;
   width: auto;
+}
+
+.contact-bar a:hover img {
+  transform: scale(1.15);
 }
 
 .fondito {
@@ -449,6 +456,7 @@
   top: 0;
   height: 100%;
   width: auto;
+  z-index: -1;
 }
 
 .subtabs {
@@ -506,6 +514,13 @@
   color: var(--muted);
 }
 
+.lang-link {
+  color: var(--text);
+  text-decoration: none;
+  transition: none;
+}
+.lang-link:hover { color: var(--accent); }
+
 </style>
 </head>
 <body>
@@ -529,15 +544,15 @@
     </p>
     <nav>
       <div class="nav-item nav-item-left">
-        <button class="nav-btn" onclick="goAbout()">
+        <button class="nav-btn" data-text="sobre mí" onclick="goAbout()">
           <span data-es="sobre mí" data-en="about me">sobre mí</span> ›
         </button>
       </div>
       <div class="nav-item nav-item-left">
-        <a class="nav-btn" href="https://vimeo.com/giachetti" target="_blank">
+        <a class="nav-btn" data-text="portafolio" href="https://vimeo.com/giachetti" target="_blank">
           <span data-es="portafolio" data-en="portfolio">portfolio</span>
           <img src="redirect.png" style="height: 0.8em; width: auto; vertical-align: middle;">
-        </a>      
+        </a>     
       </div>
       <div class="contact-bar">
         <a href="mailto:giachettigonzalo@gmail.com"><img src="email.png"></a>
@@ -696,17 +711,17 @@
               <div class="lang-grid">
                 <div class="lang-item">
                   <img src="lang_flag_ar.png" class="lang-flag-img">
-                  <span data-es="español" data-en="spanish">español</span>
+                  <a href="https://www.youtube.com/watch?v=bKcv-D2YwP0&list=RDbKcv-D2YwP0&start_radio=1" target="_blank" class="lang-link" data-es="español" data-en="spanish">español</a>
                   <span class="lang-level" data-es="nativo" data-en="native">nativo</span>
                 </div>
                 <div class="lang-item">
                   <img src="lang_flag_sco.png" class="lang-flag-img">
-                  <span data-es="inglés" data-en="english">inglés</span>
+                  <a href="https://www.youtube.com/watch?v=HbvYeLxMKN8" target="_blank" class="lang-link" data-es="inglés" data-en="english">inglés</a>
                   <span class="lang-level" data-es="nativo" data-en="native">nativo</span>
                 </div>
                 <div class="lang-item">
                   <img src="lang_flag_it.png" class="lang-flag-img">
-                  <span data-es="italiano" data-en="italian">italiano</span>
+                  <a href="https://www.youtube.com/watch?v=gaDD_C9FoYk&list=RDgaDD_C9FoYk&start_radio=1" target="_blank" class="lang-link" data-es="italiano" data-en="italian">italiano</a>
                   <span class="lang-level">B1</span>
                 </div>
               </div>
