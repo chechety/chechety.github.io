@@ -1,0 +1,833 @@
+<!-- saved from url=(0094)file:///D:/Trabajo/03%20PERFIL%20PROFESIONAL/ACTUAL/WEBSITE%202026/gonzalo%20website%20v5.html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video & Audio</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet">
+<style>@font-face {
+  font-family: 'Horus';
+  src: url('Horus.otf') format('opentype');
+}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+
+  :root {
+    --bg: #000;
+    --text: #fff;
+    --muted: #555;
+    --accent: #c11f78;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: PT mono, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    cursor: url('micursor.png'), auto;
+  }
+
+  a, button {
+  cursor: url('manito.png'), pointer;
+  }
+
+  /* VIEWPORT SLIDE */
+  .viewport {
+    display: flex;
+    width: 200%;
+    transition: transform 0.45s cubic-bezier(0.77, 0, 0.175, 1);
+  }
+  .viewport.on-about { transform: translateX(-50%); }
+
+  .page {
+    width: 50%;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px 40px;
+  }
+
+  .home-layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+}
+
+  /* LANG TOGGLE */
+  .lang-toggle {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .lang-toggle img.lang-flag {
+  width: 28px;
+  cursor: url('manito.png'), pointer;
+  opacity: 0.4;
+  transition: none;
+}
+.lang-toggle img.lang-flag.active {
+  opacity: 1;
+}
+.lang-toggle img.lang-flag:hover {
+  transform: scale(1.15);
+}
+  .gle button.active {
+    color: var(--text);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .lang-toggle button:not(.active):hover { color: #888; }
+
+  /* TITLE */
+  .site-name {
+    font-family: Horus, sans-serif;
+    font-weight: bold;
+    font-size: clamp(32px, 7vw, 60px);
+    letter-spacing: -0.02em;
+    margin-bottom: 3px;
+  }
+
+  .site-subtitle {
+    font-size: 18px;
+    font-family: PT mono, sans-serif;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    margin-bottom: 52px;
+    text-align: center;
+  }
+
+  /* NAV — floating, no dividers */
+  nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 420px;
+    gap: 0;
+  }
+
+  .nav-btn {
+    background: none;
+    border: none;
+    color: var(--text);
+    font-family: PT mono, sans-serif;
+    font-weight: normal;
+    font-size: 20px;
+    padding: 12px 0;
+    text-align: center;
+    cursor: url('manito.png'), pointer;
+    text-decoration: none;
+    transition: none;
+    display: block;
+  }
+  .nav-btn:hover { color: var(--accent); font-family: 'Horus', sans-serif; }
+
+  .nav-btn::after {
+  content: attr(data-text);
+  font-family: 'Horus', sans-serif;
+  display: block;
+  height: 0;
+  visibility: hidden;
+  overflow: hidden;
+  }
+
+  /* ABOUT PAGE */
+  #page-about {
+    justify-content: center;
+  }
+
+  .about-header {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .back-btn {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-family: PT mono, sans-serif;
+    font-size: 22px;
+    cursor: url('manito.png'), pointer;
+    padding: 0;
+    line-height: 1;
+    transition: none;
+  }
+  .back-btn:hover { color: var(--text); }
+
+  .about-title {
+    font-family: Horus, sans-serif;
+    font-weight: bold;
+    font-size: clamp(20px, 4vw, 28px);
+    letter-spacing: -0.01em;
+  }
+
+  /* SECTIONS — no dividers, center titles, left text */
+  .sections {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .section-item { width: 100%; }
+
+  .section-trigger {
+    display: block;
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--text);
+    font-family: PT mono, sans-serif;
+    font-weight: normal;
+    font-size: 24px;
+    padding: 12px 0;
+    cursor: url('manito.png'), pointer;
+    text-align: left;
+    transition: font-size 0.35s ease, color 0.35s ease;
+  }
+  .section-trigger:hover { color: var(--accent); font-family: 'Horus', sans-serif; }
+  .section-trigger.open { color: var(--accent); }
+  .section-trigger.muted { 
+  color: var(--muted); 
+  font-size: 15px;
+}
+
+  .section-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+  .section-body.open { max-height: 10000px; }
+
+  .section-body > p {
+    font-size: 20px;
+    line-height: 1.8;
+    color: #ffffff;
+    text-align: left;
+    padding: 4px 0 20px;
+  }
+
+  .job-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #1a1a1a;
+  }
+  .job-item:last-child { border-bottom: none; }
+
+  .job-title {
+    font-family: 'Horus', sans-serif;
+    font-size: 30px;
+   color: var(--text);
+   margin-bottom: 8px;
+  }
+
+  .job-row {
+   display: flex;
+   align-items: baseline;
+   gap: 8px;
+   margin-bottom: 6px;
+  }
+
+  .job-company {
+  font-family: PT mono, sans-serif;
+  font-size: 16px;
+  color: var(--text);
+  text-decoration: none;
+  transition: none;
+  }
+  .job-company:hover { color: var(--accent); }
+
+  .job-sep { color: var(--muted); font-size: 13px; }
+
+  .job-time {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+  .job-desc {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #888;
+  padding: 0;
+  }
+
+.carousel-slide {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.carousel-slide.active {
+  display: block;
+  opacity: 1;
+}
+
+.carousel-icons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  overflow: hidden;
+  padding: 12px 0 8px;
+}
+
+.carousel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+.carousel-title {
+  font-family: PT mono, sans-serif;
+  font-size: 24px;
+  color: var(--text);
+  text-align: center;
+  flex: 1;
+}
+
+.carousel-title.hovered {
+  color: var(--accent);
+}
+
+.carousel-btn {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 22px;
+  cursor: url('manito.png'), pointer;
+  padding: 0;
+  transition: none;
+  line-height: 1;
+}
+.carousel-btn:hover { color: var(--text);
+}
+
+.tool-icon {
+  width: 40px;
+  height: 40px;
+  cursor: default;
+  transition: transform 0.2s ease;
+}
+
+.tool-icon:hover {
+  transform: scale(1.15);
+}
+
+  /* CONTACT MODAL */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.88);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    z-index: 200;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+  .modal {
+    background: #080808;
+    border: 1px solid #222;
+    padding: 36px 40px;
+    width: 100%;
+    max-width: 320px;
+    position: relative;
+  }
+
+  .modal h2 {
+    font-weight: bold;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    color: var(--muted);
+  }
+
+  .contact-list {
+    align-items: center;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .contact-list li { display: flex; flex-direction: column; gap: 3px; }
+
+  .contact-label {
+    font-weight: bold;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .contact-list a {
+    font-family: Horus, sans-serif;    
+    font-size: 20px;
+    color: var(--text);
+    align-items: center;
+    text-decoration: none;
+    transition: none;
+  }
+  .contact-list a:hover { color: var(--accent); }
+
+  .contact-list img {
+  height: 1em;
+  width: auto;
+  vertical-align: middle;
+}
+
+  .modal-close {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 20px;
+    cursor: url('manito.png'), pointer;
+    transition: color 0.15s;
+    line-height: 1;
+  }
+  .modal-close:hover { color: var(--text); }
+
+  .tooltip {
+  position: fixed;
+  background: #111;
+  border: 1px solid #222;
+  padding: 10px 14px;
+  font-size: 11px;
+  color: #888;
+  line-height: 1.7;
+  max-width: 220px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+  z-index: 100;
+}
+
+.tooltip.visible { opacity: 1; 
+}
+
+.contact-bar {
+  position: absolute;
+  bottom: 24px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  align-items: center;
+}
+
+.contact-bar a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.contact-bar a:hover { color: var(--accent); }
+
+.contact-bar img {
+  height: 1.2em;
+  width: auto;
+}
+
+.fondito {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: auto;
+}
+
+.subtabs {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+}
+.subtab {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-family: 'PT Mono', monospace;
+  font-size: 14px;
+  cursor: url('manito.png'), pointer;
+  padding: 0;
+  transition: color 0.15s;
+}
+.subtab.active { color: var(--text); }
+.subtab:hover { color: var(--text); }
+.subtab-sep { color: var(--muted); }
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 0;
+}
+.skills-list span {
+  font-size: 12px;
+  color: #888;
+  border: 1px solid #222;
+  padding: 4px 10px;
+}
+
+.lang-grid {
+  display: flex;
+  gap: 25px;
+  padding: 15px 0;
+  width: 100%;
+  justify-content: center;
+}
+.lang-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.lang-flag-img {
+  width: 80px;
+  height: auto;
+}
+.lang-level {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+</style>
+</head>
+<body>
+<div class="viewport" id="viewport">
+
+  <!-- HOME -->
+  <div class="page">
+    <img src="fondito4.png" class="fondito">
+    <div class="lang-toggle">
+      <!-- BACKUP BOTONES
+<button id="btn-es" class="active" onclick="setLang('es')">ES</button>
+<button id="btn-en" onclick="setLang('en')">EN</button>
+-->
+
+<img id="btn-en" src="b_nz.png" alt="EN" onclick="setLang('en')" class="lang-flag active">
+<img id="btn-es" src="b_arg.png" alt="ES" onclick="setLang('es')" class="lang-flag">
+    </div>
+    <h1 class="site-name">Gonzalo</h1>
+    <p class="site-subtitle">
+      <span data-es="postproducción de video y audio" data-en="video &amp; audio post-production">postproducción de video y audio</span>
+    </p>
+    <nav>
+      <div class="nav-item nav-item-left">
+        <button class="nav-btn" onclick="goAbout()">
+          <span data-es="sobre mí" data-en="about me">sobre mí</span> ›
+        </button>
+      </div>
+      <div class="nav-item nav-item-left">
+        <a class="nav-btn" href="https://vimeo.com/giachetti" target="_blank">
+          <span data-es="portafolio" data-en="portfolio">portfolio</span>
+          <img src="redirect.png" style="height: 0.8em; width: auto; vertical-align: middle;">
+        </a>      
+      </div>
+      <div class="contact-bar">
+        <a href="mailto:giachettigonzalo@gmail.com"><img src="email.png"></a>
+        <a href="https://wa.link/8lkbj1" target="_blank"><img src="whatsapp.png"></a>
+        <a href="https://www.linkedin.com/in/gonzalo-giachetti/" target="_blank"><img src="linkedin.png"></a>
+      </div>
+  </div>
+
+
+  <!-- ABOUT -->
+  <div class="page" id="page-about">
+    <div class="about-header">
+      <button class="back-btn" onclick="goHome()">‹</button>
+      <!-- <h2 class="about-title" data-es="sobre mí" data-en="about me">sobre mí</h2> -->
+    </div>
+    <div class="sections">
+      <div class="section-item">
+        <button class="section-trigger" onclick="toggleSection(&#39;s1&#39;, this)">
+          <span data-es="lo que hago" data-en="what I do">lo que hago</span>
+        </button>
+        <div class="section-body" id="s1">
+          <p data-es="Me gusta intercambiar ideas con otras personas, y hacer que aparezcan en una pantalla." data-en="I enjoy exchanging ideas with people, then making those ideas show up on a screen.">Me gusta intercambiar ideas con otras personas, y hacer que aparezcan en una pantalla.</p>
+        </div>
+      </div>
+      <div class="section-item">
+        <button class="section-trigger" onclick="toggleSection(&#39;s2&#39;, this)">
+          <span data-es="experiencia laboral" data-en="work experience">experiencia laboral</span>
+        </button>
+        <div class="section-body" id="s2">
+            <div class="job-item">
+              <p class="job-title" data-es="Director del equipo de video" data-en="Video Team Director">Director del equipo de video</p>
+              <div class="job-row">
+                <a class="job-company" href="https://socialize.video/" target="_blank">Socialize Video</a>
+                <span class="job-time" data-es="mayo 2021 - julio 2024" data-en="May 2021 - July 2024">mayo 2021 - julio 2024</span>
+              </div>
+              <p class="job-desc" data-es="Manejo de equipo, delegación de tareas y quality control. Participación en la pipeline completa de producción de videos desde guión y storyboard hasta audio y color." data-en="Team management, task delegation and quality control. Participation in the full video production pipeline from script and storyboard to audio and color.">Manejo de equipo, delegación de tareas y quality control. Participación en la pipeline completa de producción de videos desde guión y storyboard hasta audio y color.</p>
+            </div>
+
+            <div class="job-item">
+              <p class="job-title" data-es="Editor de ads" data-en="Ads Editor">Editor de ads</p>
+              <div class="job-row">
+                <a class="job-company" href="https://marketingescalate.com/" target="_blank">Escalate</a>
+                <span class="job-time" data-es="agosto 2025 - enero 2026" data-en="August 2025 - January 2026">agosto 2025 - enero 2026</span>
+              </div>
+              <p class="job-desc" data-es="Edición de ads con deadlines ajustadas. Uso y actualización constante de técnicas de engagement en tendencia para maximizar CTR." data-en="Ad editing with tight deadlines. Constant use and updating of trending engagement techniques to maximize CTR.">Edición de ads con deadlines ajustadas. Uso y actualización constante de técnicas de engagement en tendencia para maximizar CTR.</p>
+            </div>
+
+            <div class="job-item">
+              <p class="job-title" data-es="Editor y animador" data-en="Editor and Animator">Editor y animador</p>
+              <div class="job-row">
+                <a class="job-company" href="https://www.instagram.com/teotinivelli/" target="_blank">Teo Tinivelli</a>
+                <span class="job-sep">|</span>
+                <a class="job-company" href="https://novazagency.com/landing/" target="_blank">Novaz Group</a>
+                <span class="job-time" data-es="julio 2018 - mayo 2021" data-en="July 2018 - May 2021">julio 2018 - mayo 2021</span>
+              </div>
+              <p class="job-desc" data-es="Creación de contenido para clientes y plataformas de todo tipo." data-en="Content creation for clients and platforms of all kinds.">Creación de contenido para clientes y plataformas de todo tipo.</p>
+            </div>
+
+            <div class="job-item">
+              <p class="job-title" data-es="Freelance" data-en="Freelance">Freelance</p>
+              <div class="job-row">
+                <span class="job-time" data-es="2018 - actualidad" data-en="2018 - present">2018 - actualidad</span>
+              </div>
+              <p class="job-desc" data-es="Siempre me aseguro de entender las necesidades y tiempos de cada proyecto. Esta es mi modalidad de trabajo favorita porque disfruto conversar con las personas y ayudarlos a conseguir los mejores resultados posibles adaptándome a su presupuesto." data-en="I always make sure to understand the needs and timeline of each project. This is my favorite way of working because I enjoy talking with people and helping them get the best possible results within their budget.">Siempre me aseguro de entender las necesidades y tiempos de cada proyecto.</p>
+            </div>
+
+            <div class="job-item">
+              <p class="job-title" data-es="Proyectos personales" data-en="Personal Projects">Proyectos personales</p>
+              <div class="job-row">
+                <span class="job-time" data-es="2015 - actualidad" data-en="2015 - present">2015 - actualidad</span>
+              </div>
+              <p class="job-desc" data-es="Aunque las presiones de la vida me limitan un poco, sigo expresándome a través del uso de las mismas herramientas que uso para trabajar, y aprendiendo más y más sobre mi oficio en el proceso." data-en="Although life's pressures limit me a little, I keep expressing myself through the same tools I use for work, learning more and more about my craft in the process.">Aunque las presiones de la vida me limitan un poco, sigo expresándome.</p>
+            </div>
+        </div>
+      </div>
+      <div class="section-item">
+        <button class="section-trigger" onclick="toggleSection(&#39;s3&#39;, this)">
+          <span data-es="herramientas" data-en="tools">herramientas</span>
+        </button>
+        <div class="section-body" id="s3">
+              <div class="carousel">
+                <div class="carousel-slide active">
+                  <div class="carousel-header">
+                    <span class="carousel-title" data-es="Video" data-en="Video">Video</span>
+                    <button class="carousel-btn" onclick="carouselNext()">›</button>
+                  </div>
+                  <div class="carousel-icons">
+                    <img src="premiere.svg" class="tool-icon" data-name="Adobe Premiere">
+                    <img src="aftereffects.svg" class="tool-icon" data-name="Adobe After Effects">
+                    <img src="davinci.svg" class="tool-icon" data-name="DaVinci Resolve">
+                    <img src="handbrake.svg" class="tool-icon" data-name="Handbrake">
+                  </div>
+                </div>
+                <div class="carousel-slide">
+                    <div class="carousel-header">
+                    <button class="carousel-btn" onclick="carouselPrev()">‹</button>
+                    <span class="carousel-title" data-es="Imagen" data-en="Design">Imagen</span>
+                    <button class="carousel-btn" onclick="carouselNext()">›</button>
+                  </div>
+                  <div class="carousel-icons">
+                    <img src="illustrator.svg" class="tool-icon" data-name="Adobe Illustrator">
+                    <img src="photoshop.svg" class="tool-icon" data-name="Adobe Photoshop">
+                    <img src="lightroom.svg" class="tool-icon" data-name="Adobe Lightroom">
+                  </div>
+                </div>
+                <div class="carousel-slide">
+                  <div class="carousel-header">
+                    <button class="carousel-btn" onclick="carouselPrev()">‹</button>
+                    <span class="carousel-title" data-es="Audio" data-en="Audio">Audio</span>
+                    <button class="carousel-btn" onclick="carouselNext()">›</button>
+                  </div>
+                  <div class="carousel-icons">
+                    <img src="audition.svg" class="tool-icon" data-name="Adobe Audition">
+                    <img src="ableton.svg" class="tool-icon" data-name="Ableton Live">
+                    <img src="ozone.svg" class="tool-icon" data-name="iZotope Ozone">
+                  </div>
+                </div>
+                <div class="carousel-slide">
+                  <div class="carousel-header">
+                    <button class="carousel-btn" onclick="carouselPrev()">‹</button>
+                    <span class="carousel-title" data-es="Utilidad" data-en="Utility">Utilidad</span>
+                  </div>
+                  <div class="carousel-icons">
+                    <img src="notion.svg" class="tool-icon" data-name="Notion">
+                    <img src="frameio.svg" class="tool-icon" data-name="Frame.io">
+                    <img src="mediaencoder.svg" class="tool-icon" data-name="Adobe Media Encoder">
+                  </div>
+                </div>
+              </div>
+            </div>
+        <div class="section-item">
+          <button class="section-trigger" onclick="toggleSection('s4', this)">
+            <span data-es="skills e idiomas" data-en="skills &amp; languages">skills e idiomas</span>
+          </button>
+          <div class="section-body" id="s4">
+            <div class="subtabs">
+              <button class="subtab active" onclick="switchSubtab('skills', this)" data-es="skills" data-en="skills">skills</button>
+              <span class="subtab-sep">|</span>
+              <button class="subtab" onclick="switchSubtab('idiomas', this)" data-es="idiomas" data-en="languages">idiomas</button>
+            </div>
+
+            <div class="subtab-content" id="subtab-skills">
+              <div class="skills-list">
+                <span data-es="edición" data-en="editing">edición</span>
+                <span data-es="motion graphics" data-en="motion graphics">motion graphics</span>
+                <span data-es="compositing" data-en="compositing">compositing</span>
+                <span data-es="redacción" data-en="copywriting">redacción</span>
+                <span data-es="diseño de sonido" data-en="sound design">diseño de sonido</span>
+                <span data-es="corrección y gradación de color" data-en="color correction & grading">corrección y gradación de color</span>
+                <span data-es="creación de .mogrt" data-en=".mogrt creation">creación de .mogrt</span>
+                <span data-es="diseño gráfico básico" data-en="light graphic design">diseño gráfico básico</span>
+              </div>
+            </div>
+
+            <div class="subtab-content" id="subtab-idiomas" style="display:none">
+              <div class="lang-grid">
+                <div class="lang-item">
+                  <img src="lang_flag_ar.png" class="lang-flag-img">
+                  <span data-es="español" data-en="spanish">español</span>
+                  <span class="lang-level" data-es="nativo" data-en="native">nativo</span>
+                </div>
+                <div class="lang-item">
+                  <img src="lang_flag_sco.png" class="lang-flag-img">
+                  <span data-es="inglés" data-en="english">inglés</span>
+                  <span class="lang-level" data-es="nativo" data-en="native">nativo</span>
+                </div>
+                <div class="lang-item">
+                  <img src="lang_flag_it.png" class="lang-flag-img">
+                  <span data-es="italiano" data-en="italian">italiano</span>
+                  <span class="lang-level">B1</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+</div>
+
+<script>
+  let lang = 'en';
+  document.addEventListener('DOMContentLoaded', () => setLang(lang));
+
+  function setLang(l) {
+    lang = l;
+    document.getElementById('btn-es').classList.toggle('active', l === 'es');
+    document.getElementById('btn-en').classList.toggle('active', l === 'en');
+    document.querySelectorAll('[data-es]').forEach(el => {
+      el.textContent = l === 'es' ? el.dataset.es : el.dataset.en;
+    });
+  }
+
+  function goAbout() {
+    document.getElementById('viewport').classList.add('on-about');
+    window.scrollTo(0, 0);
+  }
+
+  function goHome() {
+    document.getElementById('viewport').classList.remove('on-about');
+    window.scrollTo(0, 0);
+  }
+
+  function toggleSection(id, trigger) {
+  const body = document.getElementById(id);
+  const wasOpen = body.classList.contains('open');
+
+  if (wasOpen) {
+    body.classList.remove('open');
+    trigger.classList.remove('open');
+    setTimeout(() => {
+      document.querySelectorAll('.section-trigger').forEach(t => t.classList.remove('muted'));
+    }, 0);
+  } else {
+    document.querySelectorAll('.section-body').forEach(b => b.classList.remove('open'));
+    document.querySelectorAll('.section-trigger').forEach(t => {
+      t.classList.remove('open');
+      t.classList.add('muted');
+    });
+    trigger.classList.remove('muted');
+    trigger.classList.add('open');
+    body.classList.add('open');
+  }
+}
+
+  const tooltips = {
+  s2_0: { es: "Inicio como freelance en Upwork. Contratado permanentemente como animador de motion graphics y editor. Ascendido a director del equipo de video en 2023. La empresa cerró a mediados de 2024.", en: "Started as a freelancer on Upwork. Hired permanently as a motion graphics animator and editor. Promoted to video team director in 2023. The company closed in mid-2024." },
+  s2_1: { es: "Contratado por LinkedIn. Renuncié en enero de 2026.", en: "Hired via LinkedIn. Resigned in January 2026." },
+  s2_2: { es: "Inicios. Trabajo presencial hasta el comienzo de la pandemia.", en: "Early career. In-person work until the start of the pandemic." },
+  s2_3: { es: "He trabajado en cientos de piezas que siempre se presentan con sus propios desafíos.", en: "I've worked on hundreds of pieces, each with their own unique challenges." },
+};
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const tooltip = document.getElementById('tooltip');
+    document.querySelectorAll('.job-time').forEach((el, i) => {
+      const key = 's2_' + i;
+      if (!tooltips[key]) return;
+      el.style.cursor = 'default';
+      el.addEventListener('mouseenter', e => {
+        tooltip.textContent = tooltips[key][lang];
+        tooltip.classList.add('visible');
+      });
+      el.addEventListener('mousemove', e => {
+        tooltip.style.left = (e.clientX + 16) + 'px';
+        tooltip.style.top = (e.clientY + 16) + 'px';
+      });
+      el.addEventListener('mouseleave', () => {
+        tooltip.classList.remove('visible');
+      });
+    });
+  });
+
+let carouselIndex = 0;
+const carouselSlides = () => document.querySelectorAll('.carousel-slide');
+
+function carouselNext() {
+  const slides = carouselSlides();
+  slides[carouselIndex].classList.remove('active');
+  carouselIndex = (carouselIndex + 1) % slides.length;
+  slides[carouselIndex].classList.add('active');
+}
+
+function carouselPrev() {
+  const slides = carouselSlides();
+  slides[carouselIndex].classList.remove('active');
+  carouselIndex = (carouselIndex - 1 + slides.length) % slides.length;
+  slides[carouselIndex].classList.add('active');
+}
+
+document.querySelectorAll('.carousel-icons').forEach(container => {
+  const slide = container.closest('.carousel-slide');
+  const title = slide.querySelector('.carousel-title');
+  const original = title.textContent;
+  container.addEventListener('mouseleave', () => {
+    title.textContent = original;
+    title.classList.remove('hovered');
+  });
+  container.querySelectorAll('.tool-icon').forEach(icon => {
+    icon.addEventListener('mouseenter', () => {
+      title.textContent = icon.dataset.name;
+      title.classList.add('hovered');
+    });
+  });
+});
+
+function switchSubtab(tab, trigger) {
+  document.querySelectorAll('.subtab').forEach(t => t.classList.remove('active'));
+  trigger.classList.add('active');
+  document.querySelectorAll('.subtab-content').forEach(c => c.style.display = 'none');
+  document.getElementById('subtab-' + tab).style.display = 'block';
+}
+
+</script>
+
+<div class="tooltip" id="tooltip"></div>
+
+</body></html>
