@@ -4,6 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Video & Audio</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet">
 <style>@font-face {
   font-family: 'Horus';
   src: url('Horus.otf') format('opentype');
@@ -21,9 +22,14 @@
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: Arial, sans-serif;
+    font-family: PT mono, sans-serif;
     min-height: 100vh;
     overflow-x: hidden;
+    cursor: url('micursor.png'), auto;
+  }
+
+  a, button {
+  cursor: url('manito.png'), pointer;
   }
 
   /* VIEWPORT SLIDE */
@@ -60,7 +66,7 @@
   }
   .lang-toggle img.lang-flag {
   width: 28px;
-  cursor: pointer;
+  cursor: url('manito.png'), pointer;
   opacity: 0.4;
   transition: none;
 }
@@ -83,11 +89,12 @@
     font-weight: bold;
     font-size: clamp(32px, 7vw, 60px);
     letter-spacing: -0.02em;
-    margin-bottom: 6px;
+    margin-bottom: 3px;
   }
 
   .site-subtitle {
     font-size: 18px;
+    font-family: PT mono, sans-serif;
     letter-spacing: 0.04em;
     color: var(--muted);
     margin-bottom: 52px;
@@ -108,12 +115,12 @@
     background: none;
     border: none;
     color: var(--text);
-    font-family: Arial, sans-serif;
+    font-family: PT mono, sans-serif;
     font-weight: normal;
     font-size: 20px;
     padding: 12px 0;
     text-align: center;
-    cursor: pointer;
+    cursor: url('manito.png'), pointer;
     text-decoration: none;
     transition: none;
     display: block;
@@ -147,9 +154,9 @@
     background: none;
     border: none;
     color: var(--muted);
-    font-family: Arial, sans-serif;
+    font-family: PT mono, sans-serif;
     font-size: 22px;
-    cursor: pointer;
+    cursor: url('manito.png'), pointer;
     padding: 0;
     line-height: 1;
     transition: none;
@@ -180,11 +187,11 @@
     background: none;
     border: none;
     color: var(--text);
-    font-family: Arial, sans-serif;
+    font-family: PT mono, sans-serif;
     font-weight: normal;
     font-size: 24px;
     padding: 12px 0;
-    cursor: pointer;
+    cursor: url('manito.png'), pointer;
     text-align: left;
     transition: font-size 0.35s ease, color 0.35s ease;
   }
@@ -231,7 +238,7 @@
   }
 
   .job-company {
-  font-family: Arial, sans-serif;
+  font-family: PT mono, sans-serif;
   font-size: 16px;
   color: var(--text);
   text-decoration: none;
@@ -278,8 +285,8 @@
   padding: 8px 0;
 }
 .carousel-title {
-  font-family: 'Horus', sans-serif;
-  font-size: 28px;
+  font-family: PT mono, sans-serif;
+  font-size: 24px;
   color: var(--text);
   text-align: center;
   flex: 1;
@@ -294,7 +301,7 @@
   border: none;
   color: var(--muted);
   font-size: 22px;
-  cursor: pointer;
+  cursor: url('manito.png'), pointer;
   padding: 0;
   transition: none;
   line-height: 1;
@@ -388,7 +395,7 @@
     border: none;
     color: var(--muted);
     font-size: 20px;
-    cursor: pointer;
+    cursor: url('manito.png'), pointer;
     transition: color 0.15s;
     line-height: 1;
   }
@@ -435,14 +442,77 @@
   width: auto;
 }
 
+.fondito {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: auto;
+}
+
+.subtabs {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+}
+.subtab {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-family: 'PT Mono', monospace;
+  font-size: 14px;
+  cursor: url('manito.png'), pointer;
+  padding: 0;
+  transition: color 0.15s;
+}
+.subtab.active { color: var(--text); }
+.subtab:hover { color: var(--text); }
+.subtab-sep { color: var(--muted); }
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 0;
+}
+.skills-list span {
+  font-size: 12px;
+  color: #888;
+  border: 1px solid #222;
+  padding: 4px 10px;
+}
+
+.lang-grid {
+  display: flex;
+  gap: 25px;
+  padding: 15px 0;
+  width: 100%;
+  justify-content: center;
+}
+.lang-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.lang-flag-img {
+  width: 80px;
+  height: auto;
+}
+.lang-level {
+  font-size: 11px;
+  color: var(--muted);
+}
+
 </style>
 </head>
 <body>
-
 <div class="viewport" id="viewport">
 
   <!-- HOME -->
   <div class="page">
+    <img src="fondito4.png" class="fondito">
     <div class="lang-toggle">
       <!-- BACKUP BOTONES
 <button id="btn-es" class="active" onclick="setLang('es')">ES</button>
@@ -458,12 +528,15 @@
     </p>
     <nav>
       <div class="nav-item nav-item-left">
-        <button class="nav-btn" onclick="goAbout()" style="cursor: url('cursorface.png'), auto">
-          <span data-es="sobre mí" data-en="about me">sobre mí</span>
+        <button class="nav-btn" onclick="goAbout()">
+          <span data-es="sobre mí" data-en="about me">sobre mí</span> ›
         </button>
       </div>
       <div class="nav-item nav-item-left">
-        <a class="nav-btn" href="https://vimeo.com/giachetti" target="_blank" data-es="portafolio" data-en="portfolio">portfolio</a>
+        <a class="nav-btn" href="https://vimeo.com/giachetti" target="_blank">
+          <span data-es="portafolio" data-en="portfolio">portfolio</span>
+          <img src="redirect.png" style="height: 0.8em; width: auto; vertical-align: middle;">
+        </a>      
       </div>
       <div class="contact-bar">
         <a href="mailto:giachettigonzalo@gmail.com"><img src="email.png"></a>
@@ -599,7 +672,44 @@
             <span data-es="skills e idiomas" data-en="skills &amp; languages">skills e idiomas</span>
           </button>
           <div class="section-body" id="s4">
-            <p data-es="[Completar]" data-en="[Fill in]">[Completar]</p>
+            <div class="subtabs">
+              <button class="subtab active" onclick="switchSubtab('skills', this)" data-es="skills" data-en="skills">skills</button>
+              <span class="subtab-sep">|</span>
+              <button class="subtab" onclick="switchSubtab('idiomas', this)" data-es="idiomas" data-en="languages">idiomas</button>
+            </div>
+
+            <div class="subtab-content" id="subtab-skills">
+              <div class="skills-list">
+                <span data-es="edición" data-en="editing">edición</span>
+                <span data-es="motion graphics" data-en="motion graphics">motion graphics</span>
+                <span data-es="compositing" data-en="compositing">compositing</span>
+                <span data-es="redacción" data-en="copywriting">redacción</span>
+                <span data-es="diseño de sonido" data-en="sound design">diseño de sonido</span>
+                <span data-es="corrección y gradación de color" data-en="color correction & grading">corrección y gradación de color</span>
+                <span data-es="creación de .mogrt" data-en=".mogrt creation">creación de .mogrt</span>
+                <span data-es="diseño gráfico básico" data-en="light graphic design">diseño gráfico básico</span>
+              </div>
+            </div>
+
+            <div class="subtab-content" id="subtab-idiomas" style="display:none">
+              <div class="lang-grid">
+                <div class="lang-item">
+                  <img src="lang_flag_ar.png" class="lang-flag-img">
+                  <span data-es="español" data-en="spanish">español</span>
+                  <span class="lang-level" data-es="nativo" data-en="native">nativo</span>
+                </div>
+                <div class="lang-item">
+                  <img src="lang_flag_sco.png" class="lang-flag-img">
+                  <span data-es="inglés" data-en="english">inglés</span>
+                  <span class="lang-level" data-es="nativo" data-en="native">nativo</span>
+                </div>
+                <div class="lang-item">
+                  <img src="lang_flag_it.png" class="lang-flag-img">
+                  <span data-es="italiano" data-en="italian">italiano</span>
+                  <span class="lang-level">B1</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 </div>
@@ -708,6 +818,13 @@ document.querySelectorAll('.carousel-icons').forEach(container => {
     });
   });
 });
+
+function switchSubtab(tab, trigger) {
+  document.querySelectorAll('.subtab').forEach(t => t.classList.remove('active'));
+  trigger.classList.add('active');
+  document.querySelectorAll('.subtab-content').forEach(c => c.style.display = 'none');
+  document.getElementById('subtab-' + tab).style.display = 'block';
+}
 
 </script>
 
